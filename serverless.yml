@@ -1,0 +1,53 @@
+service: serverless-wolox
+
+frameworkVersion: '2'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: jonnyalexbh
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'develop'}
+  lambdaHashingVersion: 20201221
+
+functions:
+  HealthCheck:
+    handler: src/01_health_check/handler.healthCheck
+
+  Greetings:
+    handler: src/02_greetings/handler.hello
+
+  Math:
+    handler: src/03_math/handler.sum
+    events:
+      - http:
+          path: sum
+          method: post
+          cors: true
+
+  CreateClient:
+    handler: src/03_math/handler.sum
+    events:
+      - http:
+          path: users
+          method: post
+          cors: true
+
+resources:
+  Resources: 
+    ClientsTable: 
+      Properties: 
+        AttributeDefinitions: 
+          - AttributeName: client_id
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: client_id
+            KeyType: HASH
+        ProvisionedThroughput: 
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+        TableName: users_table
+      Type: "AWS::DynamoDB::Table"

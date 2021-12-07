@@ -1,0 +1,29 @@
+{
+  "name": "serverless-wolox",
+  "version": "1.0.0",
+  "description": "**Install**",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonnyalexbh/serverless-wolox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonnyalexbh/serverless-wolox/issues"
+  },
+  "homepage": "https://github.com/jonnyalexbh/serverless-wolox#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1039.0",
+    "serverless-offline": "^8.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}
