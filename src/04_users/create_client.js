@@ -2,11 +2,11 @@ const { createClient } = require('./clients.service');
 
 module.exports.handler = async (event) => {
   try {
-    const body = JSON.parse(event.body);
-    await createClient(body);
+    console.log('****1111', JSON.parse(event.body), '****');
+    const client = await createClient(JSON.parse(event.body));
     return {
       statusCode: 200,
-      body: JSON.stringify(body),
+      body: JSON.stringify(client),
     };
   } catch (error) {
     return {

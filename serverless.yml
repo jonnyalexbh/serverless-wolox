@@ -4,6 +4,7 @@ frameworkVersion: '2'
 
 plugins:
   - serverless-offline
+  - serverless-iam-roles-per-function
 
 provider:
   name: aws
@@ -29,7 +30,14 @@ functions:
           cors: true
 
   CreateClient:
-    handler: src/03_math/handler.sum
+    handler: src/04_users/create_client.handler
+    description: 'Create Client'
+    iamRoleStatementsName: jonnyBerrio-createClientSls
+    iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:PutItem
+      Resource: !GetAtt ClientsTable.Arn
     events:
       - http:
           path: users
@@ -42,7 +50,7 @@ resources:
       Properties: 
         AttributeDefinitions: 
           - AttributeName: client_id
-            AttributeType: S
+            AttributeType: N
         KeySchema: 
           - AttributeName: client_id
             KeyType: HASH

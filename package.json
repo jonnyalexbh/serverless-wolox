@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jonnyalexbh/serverless-wolox#readme",
   "dependencies": {
     "aws-sdk": "^2.1039.0",
+    "serverless-iam-roles-per-function": "^3.2.0",
     "serverless-offline": "^8.3.1"
   },
   "devDependencies": {

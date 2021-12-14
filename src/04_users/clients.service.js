@@ -12,7 +12,8 @@ exports.createClient = (client) => {
     .put(params)
     .promise()
     .then(() => params.Item)
-    .catch(() => {
+    .catch((error) => {
+      console.log(`****2222 ${error} ****`);
       throw new Error('An error occurred while trying to create the client');
     });
 };
